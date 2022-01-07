@@ -15,7 +15,7 @@ router.get('/:pageNo', (req, res) => {
     .limit(resultsPerPage)
     .skip(resultsPerPage * (page - 1))
     .then(posts => {
-      res.json(posts)
+      res.json({page, posts})
     })
     .catch(err => console.error(err))
 })
