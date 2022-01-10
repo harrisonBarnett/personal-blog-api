@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
   res.render('login')
 })
 // POST authenticate and grant access to the editor
-router.post('/login', (req, res) => {
+router.post('/', (req, res) => {
   res.redirect('/dashboard')
 })
 // rerouting just in case
