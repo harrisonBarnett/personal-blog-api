@@ -6,7 +6,7 @@ const Post = require('../models/Post')
 // ROUTES FOR BLOG EDITING GUI
 // ****************************
 // GET login page
-router.get('/login', (req, res) => {
+router.get('/', (req, res) => {
   res.render('login')
 })
 // POST authenticate and grant access to the editor
@@ -35,7 +35,7 @@ router.put('/archive/:id', (req, res) => {
 // ROUTES FOR API INTERACTION
 // ****************************
 // POST a new blog AUTH
-router.post('/', (req, res) => {
+router.post('/posts', (req, res) => {
   const { title, content, publish } = req.body
   const newPost = new Post({
     title,
@@ -51,11 +51,11 @@ router.post('/', (req, res) => {
     .catch(err => console.error(err))
 })
 // rerouting to page 1 just in case
-router.get('/', (req, res) => {
+router.get('/posts', (req, res) => {
   res.redirect('/1')
 })
 // GET 5 posts at a time for personal site AUTH
-router.get('/:pageNo', (req, res) => {
+router.get('/posts/:pageNo', (req, res) => {
   const resultsPerPage = 5
   const page = req.params.pageNo >= 1 ? req.params.pageNo : 1
 
