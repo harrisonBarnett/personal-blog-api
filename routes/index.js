@@ -2,6 +2,9 @@ var express = require('express');
 var router = express.Router();
 const Post = require('../models/Post')
 
+// ****************************
+// ROUTES FOR BLOG EDITING GUI
+// ****************************
 // GET login page
 router.get('/login', (req, res) => {
   res.render('login')
@@ -27,6 +30,10 @@ router.get('/archive/:id', (req, res) => {
 router.put('/archive/:id', (req, res) => {
   res.send('updating an existing blog post')
 })
+
+// ****************************
+// ROUTES FOR API INTERACTION
+// ****************************
 // POST a new blog AUTH
 router.post('/', (req, res) => {
   const { title, content, publish } = req.body
