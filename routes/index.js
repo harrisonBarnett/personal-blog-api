@@ -8,13 +8,13 @@ router.get('/login', (req, res) => {
 })
 // POST authenticate and grant access to the editor
 router.post('/login', (req, res) => {
-  res.redirect('/home')
+  res.redirect('/dashboard')
 })
 // rerouting just in case
-router.get('/home',  (req, res) => {
+router.get('/dashboard',  (req, res) => {
   Post.find({}).sort('-date_added')
     .then(posts => {
-      res.render('home', {posts})
+      res.render('dashboard', {posts})
     })
     .catch(err => console.error(err))
 
@@ -39,7 +39,7 @@ router.post('/', (req, res) => {
   })
   newPost.save()
     .then(()=>{
-      res.redirect('/home')
+      res.redirect('/dashboard')
     })
     .catch(err => console.error(err))
 })

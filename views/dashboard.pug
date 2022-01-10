@@ -1,0 +1,35 @@
+extends layout
+
+block content
+    .editor
+        form(action="/" method="POST") 
+            p write a post
+            label(for="title") title
+                input(type="text" name="title" id="title")
+            br
+            textarea(id='tinymce-editor' name='content')
+            br
+            label(for="publish") publish on save 
+                input(type="checkbox" name="publish" id="publish" value="true")
+            button(type="submit" onclick='content()') save
+
+    
+
+    .archive-list 
+        each post in posts
+            p #{post.date_added}
+            p #{post.title}
+
+    
+    script.
+        tinyMCE.init({
+            selector: '#tinymce-editor',
+            height: 500,
+            plugins: 'autosave',
+            autosave_interval: '3s',
+            setup: editor => {
+                editor.on('change', () => {
+                    editor.save()
+                })
+            }
+        })

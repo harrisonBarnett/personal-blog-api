@@ -17,6 +17,8 @@ require('./config/database')(process.env.DB_URL)
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
+// set locals for use in templates
+app.locals.TINY_MCE_KEY = process.env.TINY_MCE_KEY
 
 app.use(cors())
 app.use(logger('dev'));
@@ -24,6 +26,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/tinymce', express.static(path.join(__dirname, 'node_modules', 'tinymce')));
+
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
