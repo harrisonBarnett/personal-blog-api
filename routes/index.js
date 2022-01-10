@@ -52,7 +52,7 @@ router.post('/posts', (req, res) => {
 })
 // rerouting to page 1 just in case
 router.get('/posts', (req, res) => {
-  res.redirect('/1')
+  res.redirect('/posts/1')
 })
 // GET 5 posts at a time for personal site AUTH
 router.get('/posts/:pageNo', (req, res) => {
