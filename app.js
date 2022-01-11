@@ -6,9 +6,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const cors = require('cors')
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-
+// initialize app
 var app = express();
 
 // MongoDB init
@@ -28,9 +26,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/tinymce', express.static(path.join(__dirname, 'node_modules', 'tinymce')));
 
-
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+// ROUTES
+app.use('/', require('./routes/index'));
+app.use('/dashboard', require('./routes/dashboard'))
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
