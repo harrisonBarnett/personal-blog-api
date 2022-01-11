@@ -4,6 +4,10 @@ var router = express.Router();
 const jwt = require('jsonwebtoken')
 const Post = require('../models/Post')
 
+// REDIRECT route for login
+router.get('/', (req, res) => {
+  res.redirect('/dashboard/login')
+})
 // ****************************
 // ROUTES FOR API INTERACTION
 // ****************************
@@ -51,8 +55,11 @@ router.post('/generate', (req, res) => {
 // // VERIFY API token to GET and POST to posts
 function verifyToken(req, res, next) {
   const header = req.headers['authorization']
-  if(typeof header !== 'undefined') {
-    req.token = header.split(' ')[1]
+  const cookie = req.cookies['Authorization']
+
+  if(typeof header !== 'undefined' || typeof cookie !== 'undefined') {
+    // // add some middleware to do actual validation
+    // req.token = cookie.split(' ')[1]
     next()
   } else {
     res.sendStatus(403)
