@@ -30,3 +30,5 @@ router.get('/', (req, res) => {
   router.put('/archive/:id', (req, res) => {
     res.send('updating an existing blog post')
   })
+
+  module.exports = router

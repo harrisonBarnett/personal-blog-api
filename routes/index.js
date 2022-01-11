@@ -36,8 +36,4 @@ router.get('/posts/:pageNo', (req, res) => {
     .catch(err => console.error(err))
 })
 
-
-
-
-
 module.exports = router;
