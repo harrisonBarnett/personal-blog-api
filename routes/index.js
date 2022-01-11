@@ -57,13 +57,27 @@ function verifyToken(req, res, next) {
   const header = req.headers['authorization']
   const cookie = req.cookies['Authorization']
 
-  if(typeof header !== 'undefined' || typeof cookie !== 'undefined') {
-    // // add some middleware to do actual validation
-    // req.token = cookie.split(' ')[1]
-    next()
+  if(header) {
+    const token = header.split(' ')[1]
+    const verified = jwt.verify(token, process.env.JWT_SECRET)
+    if(verified) {
+      next()
+    } else {
+      res.sendStatus(403)
+    }
+  } else if(cookie) {
+    const token = cookie.split(' ')[1]
+    const verified = jwt.verify(token, process.env.JWT_SECRET)
+    if(verified) {
+      next()
+    } else {
+      res.sendStatus(403)
+    }
   } else {
     res.sendStatus(403)
   }
+
+
 }
 
 
