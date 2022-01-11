@@ -11,7 +11,7 @@ router.get('/login', (req, res) => {
 })
 // POST authenticate and grant access to the editor
 router.post('/login', (req, res) => {
-  res.redirect('/')
+  res.redirect('/dashboard')
 })
 // GET the main dashboard
 router.get('/',  (req, res) => {
