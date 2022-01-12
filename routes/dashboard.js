@@ -47,10 +47,14 @@ router.put('/archive/:id', verifyAuth, (req, res) => {
 // // verify user, redirect to login if not auth
 function verifyAuth(req, res, next) {
   const cookie = req.cookies['Authorization']
-  if(typeof cookie !== 'undefined') {
-    // // add middleware to do actual auth
-    // req.token = cookie.split(' ')[1]
-    next()
+  if(cookie) {
+    const token = cookie.split(' ')[1]
+    const verified = jwt.verify(token, process.env.JWT_SECRET)
+    if(verified) {
+      next()
+    } else {
+      res.sendStatus(403)
+    }
   } else {
     res.redirect('/dashboard/login')
   }
