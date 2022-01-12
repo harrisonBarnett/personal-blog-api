@@ -60,8 +60,6 @@ function verifyAuth(req, res, next) {
 function pushAuth(req, res, next) {
   const cookie = req.cookies['Authorization']
   if(typeof cookie !== 'undefined') {
-    // // add middleware to do actual auth
-    // req.token = cookie.split(' ')[1]
     res.redirect('/dashboard')
   } else {
     next()
