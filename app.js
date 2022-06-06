@@ -28,7 +28,8 @@ app.use('/tinymce', express.static(path.join(__dirname, 'node_modules', 'tinymce
 
 // ROUTES
 app.use('/', require('./routes/index'));
-app.use('/dashboard', require('./routes/dashboard'))
+app.use('/dashboard', require('./routes/dashboard'));
+app.use('/workout', require('./routes/workout'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
